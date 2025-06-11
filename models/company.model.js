@@ -1,8 +1,26 @@
-import mongoose from "mongoose"
-import { Schema } from "mongoose"
+import mongoose from "mongoose";
 
-const CompanyModel = new Schema( 
-  { 
-    name: String, 
+const companySchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    logoUrl: {
+      type: String,
+      default: "",
+    },
+    location: {
+      type: String,
+      default: "",
+    },
+  },
+  {
+    timestamps: true,
   }
-)
+);
+
+const Company = mongoose.model("Company", companySchema);
+
+export default Company;
