@@ -42,6 +42,12 @@ const updateComp = async (req, res) => {
     const { id } = req.params;
     const { name, logoUrl, location } = req.body.params;
 
+    const company = Company.findById(id);
+
+    if (!company) {
+      res.status(404).json({ message: "Company not found", success: false });
+    }
+
     const updated = await Companies.findByIdAndUpdate(
       id,
       { name, logoUrl, location },
