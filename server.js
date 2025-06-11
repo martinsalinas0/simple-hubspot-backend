@@ -1,13 +1,11 @@
-import express from 'express'
-import connectDB from './config/db.js';
-import dotenv from 'dotenv'
-
+import express from "express";
+import connectDB from "./config/db.js";
+import dotenv from "dotenv";
+import CompanyRoutes from "./routes/company.routes.js";
 
 dotenv.config();
 
-
 const app = express();
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -25,11 +23,13 @@ const PORT = process.env.PORT || 8000;
 //ROUTES
 
 //app.use(mainRoutes);
-app.get("/", (req, res)=> { 
-  res.send("MAIN HOME PAGE")
+app.get("/", (req, res) => {
+  res.send("MAIN HOME PAGE");
 });
 
-console.log(process.env.MONGO_URI);
+// console.log(process.env.MONGDB_URI);
+
+app.use("/", CompanyRoutes);
 
 const serverConnect = async () => {
   try {
@@ -47,5 +47,4 @@ const serverConnect = async () => {
   }
 };
 
-serverConnect(); 
-
+serverConnect();
