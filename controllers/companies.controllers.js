@@ -67,6 +67,11 @@ const updateComp = async (req, res) => {
       return res.status(404).json({ message: "Company not found", success: false });
     }
 
+
+    if(!name && !logoUrl && !location) { 
+     return res.status(400).json({message: "No value has been added to update"})
+    }
+
     const updated = await Companies.findByIdAndUpdate(
       id,
       { name, logoUrl, location },
