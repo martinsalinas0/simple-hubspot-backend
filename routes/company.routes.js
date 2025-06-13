@@ -4,6 +4,7 @@ import {
   addCompany,
   deleteComp,
   updateComp,
+  getCompById,
 } from "../controllers/companies.controllers.js";
 
 const router = express.Router();
@@ -12,6 +13,7 @@ router.get("/company/all", getCompanies);
 router.post("/company/new", addCompany);
 router.delete("/company/:id", deleteComp);
 router.put("/company/:id", updateComp);
+router.get("/company/:id", getCompById)
 
 export default router; 
 
