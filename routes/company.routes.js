@@ -13,4 +13,4 @@ router.post("/companies", addCompany);
 router.delete("/companies/:id", deleteComp);
 router.put("/companies/:id", updateComp);
 
-module.exports = router;
+export default router; 

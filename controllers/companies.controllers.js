@@ -11,7 +11,7 @@ const getCompanies = async (req, res) => {
 
 const addCompany = async (req, res) => {
   try {
-    const { name, logoUrl, location } = req.body.params;
+    const { name, logoUrl, location } = req.body;
     await Companies.create({ name, logoUrl, location });
 
     res.status(201).json({
@@ -64,9 +64,4 @@ const updateComp = async (req, res) => {
   }
 };
 
-module.exports = {
-  getCompanies,
-  addCompany,
-  deleteComp,
-  updateComp,
-};
+export { getCompanies, addCompany, deleteComp, updateComp };

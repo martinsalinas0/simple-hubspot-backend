@@ -27,7 +27,8 @@ app.get("/", (req, res) => {
   res.send("MAIN HOME PAGE");
 });
 
-// console.log(process.env.MONGDB_URI);
+// console.log(process.env.MONGDB_URI);\
+console.log("this is a simpliefied application of HubSpot CRM")
 
 app.use("/", CompanyRoutes);
 
@@ -37,7 +38,7 @@ const serverConnect = async () => {
     console.log("Database connected!");
     app.listen(PORT, () => {
       console.log(
-        "Server has been connected succesfully. \nServer connected at http://localhost" +
+        "Server has been connected succesfully. \nServer connected at http://localhost:" +
           PORT
       );
     });
