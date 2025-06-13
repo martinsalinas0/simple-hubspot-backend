@@ -30,7 +30,7 @@ app.get("/api", (req, res) => {
 // console.log(process.env.MONGDB_URI);\
 console.log("this is a simpliefied application of HubSpot CRM")
 
-app.use("/api/company", CompanyRoutes);
+app.use("/api", CompanyRoutes);
 
 const serverConnect = async () => {
   try {

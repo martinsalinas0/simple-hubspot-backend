@@ -8,10 +8,10 @@ import {
 
 const router = express.Router();
 // route is "api/company/----"
-router.get("/all", getCompanies);
-router.post("/new", addCompany);
-router.delete("/companies/:id", deleteComp);
-router.put("/companies/:id", updateComp);
+router.get("/company/all", getCompanies);
+router.post("/company/new", addCompany);
+router.delete("/company/:id", deleteComp);
+router.put("/company/:id", updateComp);
 
 export default router; 
 
