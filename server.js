@@ -23,14 +23,14 @@ const PORT = process.env.PORT || 8000;
 //ROUTES
 
 //app.use(mainRoutes);
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("MAIN HOME PAGE");
 });
 
 // console.log(process.env.MONGDB_URI);\
 console.log("this is a simpliefied application of HubSpot CRM")
 
-app.use("/", CompanyRoutes);
+app.use("/api/company", CompanyRoutes);
 
 const serverConnect = async () => {
   try {

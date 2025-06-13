@@ -11,13 +11,10 @@ const getCompanies = async (req, res) => {
 
 const addCompany = async (req, res) => {
   try {
-
-
-
     const { name, logoUrl, location } = req.body;
 
-    if(!name || !logoUrl  || !location ) { 
-      res.status(400).json({message: error.message, success: false})
+    if (!name || !logoUrl || !location) {
+      return res.status(400).json({ message: "Company name, logoURL, and location are required.", success: false });
     }
 
     await Companies.create({ name, logoUrl, location });
