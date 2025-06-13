@@ -11,7 +11,15 @@ const getCompanies = async (req, res) => {
 
 const addCompany = async (req, res) => {
   try {
+
+
+
     const { name, logoUrl, location } = req.body;
+
+    if(!name || !logoUrl  || !location ) { 
+      res.status(400).json({message: error.message, success: false})
+    }
+
     await Companies.create({ name, logoUrl, location });
 
     res.status(201).json({
