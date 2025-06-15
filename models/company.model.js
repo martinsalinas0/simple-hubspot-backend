@@ -17,7 +17,7 @@ const companySchema = new mongoose.Schema(
     },
     status: { 
       type: String, 
-      default: "initiated"
+      default: "waiting assignment"
     }
   },
   {
