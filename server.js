@@ -3,6 +3,7 @@ import connectDB from "./config/db.js";
 import dotenv from "dotenv";
 import CompanyRoutes from "./routes/company.routes.js";
 
+
 dotenv.config();
 
 const app = express();
@@ -10,13 +11,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// const cors = require("cors");
-// app.use(
-//   cors({
-//     origin: "http://localhost:3000",
-//     credentials: true,
-//   })
-// );
+import cors from 'cors'
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 const PORT = process.env.PORT || 8000;
 

@@ -15,6 +15,10 @@ const companySchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    status: { 
+      type: String, 
+      default: "initiated"
+    }
   },
   {
     timestamps: true,
@@ -24,3 +28,4 @@ const companySchema = new mongoose.Schema(
 const Company = mongoose.model("Company", companySchema);
 
 export default Company;
+   
