@@ -1,9 +1,13 @@
-import { fa } from "faker/lib/locales.js";
 import Companies from "../models/company.model.js";
 
 const getCompanies = async (req, res) => {
   try {
     const companies = await Companies.find();
+    if(!companies){ 
+      return res.status(404).json({message: error.message, error: 'cant find companies', success: false})
+    }
+
+
     res.status(200).json({ companies });
   } catch (error) {
     res.status(500).json({ message: error.message });
