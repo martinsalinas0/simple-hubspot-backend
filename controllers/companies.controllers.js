@@ -16,16 +16,16 @@ const getCompanies = async (req, res) => {
 
 const addCompany = async (req, res) => {
   try {
-    const { name, logoUrl, location, status } = req.body;
+    const { name, logoURL, location } = req.body;
 
-    if (!name || !logoUrl || !location || !status) {
+    if (!name || !logoURL || !location) {
       return res.status(400).json({
         message: "Company name, logoURL, and location are required.",
         success: false,
       });
     }
 
-    await Companies.create({ name, logoUrl, location, status });
+    await Companies.create({ name, logoURL, location});
 
     res.status(201).json({
       message: "New Company Created",
@@ -64,7 +64,7 @@ const deleteComp = async (req, res) => {
 const updateComp = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, logoUrl, location, status } = req.body;
+    const { name, logoURL, location, status } = req.body;
 
     const company = await Companies.findById(id);
 
@@ -74,7 +74,7 @@ const updateComp = async (req, res) => {
         .json({ message: "Company not found", success: false });
     }
 
-    if (!name && !logoUrl && !location && !status) {
+    if (!name && !logoURL && !location && !status) {
       return res
         .status(400)
         .json({ message: "No value has been added to update" });
@@ -82,7 +82,7 @@ const updateComp = async (req, res) => {
 
     const updated = await Companies.findByIdAndUpdate(
       id,
-      { name, logoUrl, location, status },
+      { name, logoURL, location, status },
       { new: true }
     );
 
