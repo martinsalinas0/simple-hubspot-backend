@@ -7,7 +7,7 @@ const companySchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    logoUrl: {
+    logoURL: {
       type: String,
       default: "",
     },
@@ -15,10 +15,10 @@ const companySchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-    status: { 
-      type: String, 
-      default: "waiting assignment"
-    }
+    status: {
+      type: String,
+      default: "initiated",
+    },
   },
   {
     timestamps: true,
@@ -28,4 +28,3 @@ const companySchema = new mongoose.Schema(
 const Company = mongoose.model("Company", companySchema);
 
 export default Company;
-   
