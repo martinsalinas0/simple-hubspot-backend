@@ -11,8 +11,8 @@ const router = express.Router();
 // route is "api/company/----"
 router.get("/company/all", getCompanies);
 router.post("/company/new", addCompany);
-router.delete("/company/:id", deleteComp);
-router.put("/company/:id", updateComp);
+router.delete("/company/delete/:id", deleteComp);
+router.put("/company/update/:id", updateComp);
 router.get("/company/:id", getCompById)
 
 export default router; 
