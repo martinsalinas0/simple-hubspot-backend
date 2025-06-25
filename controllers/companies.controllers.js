@@ -1,3 +1,4 @@
+
 import Companies from "../models/company.model.js";
 
 const getCompanies = async (req, res) => {
@@ -18,14 +19,14 @@ const addCompany = async (req, res) => {
   try {
     const { name, logoURL, location } = req.body;
 
-    if (!name || !logoURL || !location) {
+    if (!name || !logoURL || !location || !pointOfContact || !email || !phone_number) {
       return res.status(400).json({
         message: "Company name, logoURL, and location are required.",
         success: false,
       });
     }
 
-    await Companies.create({ name, logoURL, location});
+    await Companies.create({ name, logoURL, location,  pointOfContact, email, phoneNumber});
 
     res.status(201).json({
       message: "New Company Created",
@@ -64,37 +65,60 @@ const deleteComp = async (req, res) => {
 const updateComp = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, logoURL, location, status } = req.body;
+    const {
+      name,
+      logoURL,
+      location,
+      status,
+      pointOfContact,
+      email,
+      phoneNumber,
+    } = req.body;
 
     const company = await Companies.findById(id);
 
     if (!company) {
-      return res
-        .status(404)
-        .json({ message: "Company not found", success: false });
+      return res.status(404).json({
+        message: "Company not found",
+        success: false,
+      });
     }
 
-    if (!name && !logoURL && !location && !status) {
-      return res
-        .status(400)
-        .json({ message: "No value has been added to update" });
+    
+    const updateFields = {};
+
+    if (name !== undefined) updateFields.name = name;
+    if (logoURL !== undefined) updateFields.logoURL = logoURL;
+    if (location !== undefined) updateFields.location = location;
+    if (status !== undefined) updateFields.status = status;
+    if (pointOfContact !== undefined) updateFields.pointOfContact = pointOfContact;
+    if (email !== undefined) updateFields.email = email;
+    if (phoneNumber !== undefined) updateFields.phoneNumber = phoneNumber;
+
+    if (Object.keys(updateFields).length === 0) {
+      return res.status(400).json({
+        message: "No value has been added to update",
+        success: false,
+      });
     }
 
-    const updated = await Companies.findByIdAndUpdate(
-      id,
-      { name, logoURL, location, status },
-      { new: true }
-    );
+    const updated = await Companies.findByIdAndUpdate(id, updateFields, {
+      new: true,
+    });
 
-    res.status(200).json({
+    return res.status(200).json({
       message: "Company Updated",
       success: true,
       updated,
     });
   } catch (error) {
-    res.status(500).json({ message: error.message, success: false });
+    return res.status(500).json({
+      message: error.message,
+      success: false,
+    });
   }
 };
+
 
 const getCompById = async (req, res) => {
   try {
