@@ -17,7 +17,32 @@ const companySchema = new mongoose.Schema(
     },
     status: {
       type: String,
+      enum: [
+        "initiated",
+        "qualified",
+        "contract sent",
+        "negotiating",
+        "closed won",
+        "closed lost",
+      ],
       default: "initiated",
+      lowercase: true, 
+      trim: true,
+    },
+    pointOfContact: { 
+      type: String,
+      required: false, 
+      default: "none",
+    }, 
+    phoneNumber: { 
+      type: String, 
+      required: false, 
+      default: "none",
+    }, 
+    email: { 
+      type: String, 
+      required: true, 
+      default: "none",
     },
   },
   {
