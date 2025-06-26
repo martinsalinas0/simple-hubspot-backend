@@ -4,12 +4,13 @@ import Companies from "../models/company.model.js";
 const getCompanies = async (req, res) => {
   try {
     const companies = await Companies.find();
+    const companyCount = await Companies.countDocuments(); 
     if(!companies){ 
       return res.status(404).json({message: error.message, error: 'cant find companies', success: false})
     }
 
 
-    res.status(200).json({ companies });
+    res.status(200).json({ companies, count: companyCount, success: 'true'});
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -17,9 +18,9 @@ const getCompanies = async (req, res) => {
 
 const addCompany = async (req, res) => {
   try {
-    const { name, logoURL, location } = req.body;
+    const {  name, logoURL, location,  pointOfContact, email, phoneNumber } = req.body;
 
-    if (!name || !logoURL || !location || !pointOfContact || !email || !phone_number) {
+    if (!name || !logoURL || !location ) {
       return res.status(400).json({
         message: "Company name, logoURL, and location are required.",
         success: false,
@@ -139,5 +140,10 @@ const getCompById = async (req, res) => {
     res.status(500).json({ message: error.message, success: false });
   }
 };
+
+
+
+
+
 
 export { getCompanies, addCompany, deleteComp, updateComp, getCompById };
