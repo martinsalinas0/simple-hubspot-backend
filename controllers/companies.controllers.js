@@ -21,7 +21,7 @@ const addCompany = async (req, res) => {
   try {
     const { name, logoURL, location, pointOfContact, email, phoneNumber, dealAmount } = req.body;
 
-    if (!name || !email || !location) {
+    if (!name || !email || !location || !pointOfContact || !email || !phoneNumber || !dealAmount) {
       return res.status(400).json({
         message: "Company name, logoURL, and location are required.",
         success: false,
