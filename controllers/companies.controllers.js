@@ -73,6 +73,7 @@ const updateComp = async (req, res) => {
       pointOfContact,
       email,
       phoneNumber,
+      dealAmount
     } = req.body;
 
     const company = await Companies.findById(id);
@@ -94,6 +95,7 @@ const updateComp = async (req, res) => {
     if (pointOfContact !== undefined) updateFields.pointOfContact = pointOfContact;
     if (email !== undefined) updateFields.email = email;
     if (phoneNumber !== undefined) updateFields.phoneNumber = phoneNumber;
+    if (dealAmount !== undefined) updateFields.dealAmount = dealAmount; 
 
     if (Object.keys(updateFields).length === 0) {
       return res.status(400).json({

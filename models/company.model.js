@@ -15,6 +15,10 @@ const companySchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    dealAmount: {
+      type: Number, 
+      default: 0,
+    }, 
     status: {
       type: String,
       enum: [
